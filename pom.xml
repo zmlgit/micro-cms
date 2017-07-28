@@ -8,7 +8,7 @@
     <artifactId>micro-cms</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>cms-domain</module>
+        <module>cms-user</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -44,18 +44,8 @@
                 <version>${kotlin.version}</version>
             </dependency>
             <dependency>
-                <groupId>cn.zmlio.framework</groupId>
-                <artifactId>prototype-domain</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.zmlio.framework</groupId>
-                <artifactId>prototype-repository</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.zmlio.framework</groupId>
-                <artifactId>prototype-service</artifactId>
+                <groupId>cn.zmlio.micro-cms</groupId>
+                <artifactId>cms-user</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
@@ -72,6 +62,7 @@
             <artifactId>kotlin-stdlib-jre8</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
@@ -86,6 +77,35 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${springboot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>delombok</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>delombok</goal>
+                            </goals>
+                            <configuration>
+                                <formatPreferences>
+                                    <javaLangAsFQN>skip</javaLangAsFQN>
+                                </formatPreferences>
+                                <verbose>true</verbose>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>test-delombok</id>
+                            <phase>generate-test-sources</phase>
+                            <goals>
+                                <goal>testDelombok</goal>
+                            </goals>
+                            <configuration>
+                                <verbose>true</verbose>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.jetbrains.kotlin</groupId>
@@ -122,8 +142,25 @@
                         </execution>
                     </executions>
                     <configuration>
+                        <compilerPlugins>
+                            <!-- Or "spring" for the Spring support -->
+                            <plugin>all-open</plugin>
+                            <plugin>no-arg</plugin>
+                        </compilerPlugins>
                         <jvmTarget>1.8</jvmTarget>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.jetbrains.kotlin</groupId>
+                            <artifactId>kotlin-maven-allopen</artifactId>
+                            <version>${kotlin.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.jetbrains.kotlin</groupId>
+                            <artifactId>kotlin-maven-noarg</artifactId>
+                            <version>${kotlin.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -134,62 +171,22 @@
         </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-noarg</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>delombok</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>delombok</goal>
-                        </goals>
-                        <configuration>
-                            <formatPreferences>
-                                <javaLangAsFQN>skip</javaLangAsFQN>
-                            </formatPreferences>
-                            <verbose>true</verbose>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>test-delombok</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>testDelombok</goal>
-                        </goals>
-                        <configuration>
-                            <verbose>true</verbose>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jvmTarget>1.8</jvmTarget>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
