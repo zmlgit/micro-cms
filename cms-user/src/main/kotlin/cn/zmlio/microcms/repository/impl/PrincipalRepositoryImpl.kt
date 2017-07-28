@@ -9,8 +9,7 @@ import cn.zmlio.microcms.entity.UserEntity
 import cn.zmlio.microcms.repository.PrincipalRepository
 import org.springframework.stereotype.Repository
 
-@Repository
-open class PrincipalRepositoryImpl(val userDao: UserDao, val roleDao: RoleDao, val accessDao: AccessDao) : PrincipalRepository {
+@Repository class PrincipalRepositoryImpl(val userDao: UserDao, val roleDao: RoleDao, val accessDao: AccessDao) : PrincipalRepository {
 
     override fun newPrincipal(): Principal {
         val userEntity = UserEntity()

@@ -144,11 +144,13 @@
                     <configuration>
                         <compilerPlugins>
                             <!-- Or "spring" for the Spring support -->
-                            <plugin>all-open</plugin>
+                            <plugin>spring</plugin>
                             <plugin>no-arg</plugin>
                         </compilerPlugins>
                         <jvmTarget>1.8</jvmTarget>
+
                     </configuration>
+
                     <dependencies>
                         <dependency>
                             <groupId>org.jetbrains.kotlin</groupId>
