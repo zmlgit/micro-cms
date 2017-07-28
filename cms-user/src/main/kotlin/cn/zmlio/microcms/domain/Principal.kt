@@ -1,4 +1,4 @@
-package cn.zmlio.microcms.aggregate
+package cn.zmlio.microcms.domain
 
 import cn.zmlio.microcms.entity.AccessEntity
 import cn.zmlio.microcms.entity.RoleEntity

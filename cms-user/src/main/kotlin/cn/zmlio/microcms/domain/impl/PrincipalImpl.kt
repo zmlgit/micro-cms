@@ -1,13 +1,12 @@
-package cn.zmlio.microcms.aggregate.impl
+package cn.zmlio.microcms.domain.impl
 
-import cn.zmlio.microcms.aggregate.Principal
+import cn.zmlio.microcms.domain.Principal
 import cn.zmlio.microcms.dao.AccessDao
 import cn.zmlio.microcms.dao.RoleDao
 import cn.zmlio.microcms.dao.UserDao
 import cn.zmlio.microcms.entity.AccessEntity
 import cn.zmlio.microcms.entity.RoleEntity
 import cn.zmlio.microcms.entity.UserEntity
-import org.springframework.data.jpa.repository.JpaRepository
 
 class PrincipalImpl (val userEntity: UserEntity, val userDao: UserDao, val roleDao: RoleDao, val accessDao: AccessDao)
     : Principal {
