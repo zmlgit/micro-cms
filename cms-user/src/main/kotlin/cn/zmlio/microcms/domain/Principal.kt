@@ -1,8 +1,8 @@
 package cn.zmlio.microcms.domain
 
-import cn.zmlio.microcms.entity.AccessEntity
-import cn.zmlio.microcms.entity.RoleEntity
 import cn.zmlio.microcms.entity.UserEntity
+import cn.zmlio.microcms.values.Access
+import cn.zmlio.microcms.values.Role
 
 interface Principal {
     // 当前用户的id
@@ -11,8 +11,8 @@ interface Principal {
     val user: UserEntity
 
     // 当前用户的角色
-    fun roles(): Set<RoleEntity>
+    fun roles(): Set<Role>
 
     // 当前用户的权限
-    fun accesses(): Set<AccessEntity>
+    fun accesses(): Set<Access>
 }
