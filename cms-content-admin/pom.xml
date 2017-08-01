@@ -23,4 +23,7 @@
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>cms-content-admin</finalName>
+    </build>
 </project>
