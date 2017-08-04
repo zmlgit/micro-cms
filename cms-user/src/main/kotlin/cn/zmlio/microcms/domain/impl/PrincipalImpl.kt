@@ -12,24 +12,24 @@ class PrincipalImpl(val userEntity: UserEntity, val userDao: UserDao, val roleDa
     : Principal {
 
     private val roles: Set<Role> by lazy {
-        this.userEntity.roles.map { Role(it.roleCode, it.roleName, it.module, it.isModuleDefault) }.toSet()
+        roleDao.findAll().map { it.let { Role(it.roleCode, it.roleName, it.module, it.isModuleDefault) } }.toSet()
     }
 
     private val accesses: Set<Access> by lazy {
-        this.userEntity.roles.flatMap { it.accesses }.toSet().map {
+        accessDao.findAll().map {
             Access(it.privilege, it.path)
         }.toSet()
     }
 
-    override val id: Long
-        get() = this.user.id
+    override val id: Long by lazy {
+        this.user.id!!
+    }
     override val user: UserEntity
         get() = userEntity
 
     override fun roles(): Set<Role> = this.roles
 
     override fun accesses(): Set<Access> = this.accesses
-
 }
 
 
