@@ -22,7 +22,7 @@ class PrincipalImpl(val userEntity: UserEntity, val userDao: UserDao, val roleDa
     }
 
     override val id: Long by lazy {
-        this.user.id!!
+        this.user.id
     }
     override val user: UserEntity
         get() = userEntity
