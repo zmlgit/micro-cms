@@ -13,7 +13,7 @@ open class BasicEntity(@Id
                        var id: Long) {
 
     @Column(nullable = false, name = "create_time")
-    var createTime = Date()
+    val createTime = Date()
     @Column(nullable = false, name = "update_time")
     var updateTime = Date()
 

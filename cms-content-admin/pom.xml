@@ -12,7 +12,7 @@
     <artifactId>cms-content-admin</artifactId>
     <packaging>jar</packaging>
 
-    <name>cn.zmlio.micro-cms cms-content-admin</name>
+    <name>cms-content-admin</name>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
