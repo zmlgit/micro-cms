@@ -10,6 +10,7 @@
     <modules>
         <module>cms-user</module>
         <module>cms-content-admin</module>
+        <module>cms-commons</module>
     </modules>
 
     <packaging>pom</packaging>

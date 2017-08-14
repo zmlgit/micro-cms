@@ -1,13 +1,11 @@
 package cn.zmlio.microcms.entity
 
-import org.hibernate.annotations.Where
 import java.sql.Timestamp
 import java.util.*
 import javax.persistence.*
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Where(clause = "is_deleted = 0")
 open class BasicEntity(@Id
                        @GeneratedValue(strategy = GenerationType.IDENTITY)
                        var id: Long) {
@@ -25,7 +23,6 @@ open class BasicEntity(@Id
     var timeStamp = Timestamp(System.currentTimeMillis())
 
     constructor() : this(0)
-
 
 
     override fun toString(): String {
